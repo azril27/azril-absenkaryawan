@@ -1,59 +1,179 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+# 📦 Cara Instalasi Azril Absensi Karyawan (Dari Nol Sampai Jalan)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Panduan ini dibuat agar pengguna lain dapat meng-clone, mengonfigurasi, dan menjalankan aplikasi tanpa bingung.
+Asumsi umum: proyek ini berbasis **PHP** + **Database (MySQL/MariaDB)**.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# ✅ 1. Persiapan Lingkungan (Wajib)
 
-## Learning Laravel
+Sebelum menginstall aplikasi, pastikan PC/laptop sudah memiliki:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### **A. PHP**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Versi minimal biasanya **PHP 7.4+** atau **PHP 8+**
+Cek dengan:
 
-## Laravel Sponsors
+```bash
+php -v
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### **B. Composer**
 
-### Premium Partners
+Jika belum ada, unduh di:
+[https://getcomposer.org/](https://getcomposer.org/)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Cek:
 
-## Contributing
+```bash
+composer -v
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### **C. Web Server**
 
-## Code of Conduct
+* XAMPP
+* Laragon
+* WAMP
+* MAMP
+  (Disarankan **XAMPP** atau **Laragon** untuk pemula)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### **D. MySQL / MariaDB**
 
-## Security Vulnerabilities
+Biasanya sudah termasuk dalam XAMPP/Laragon.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+# ✅ 2. Clone Repository
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Buka terminal / CMD / Git Bash, lalu jalankan:
+
+```bash
+git clone https://github.com/azril27/azril-absenkaryawan.git
+```
+
+Masuk ke folder:
+
+```bash
+cd azril-absenkaryawan
+```
+
+---
+
+# ✅ 3. Instal Dependency
+
+Jika proyek menggunakan Composer, jalankan:
+
+```bash
+composer install
+```
+
+Jika tidak ada `composer.json`, lewati langkah ini.
+
+---
+
+# ✅ 4. Konfigurasi File `.env`
+
+1. Salin file:
+
+```bash
+cp .env.example .env
+```
+
+2. Edit file `.env` menggunakan editor:
+
+   * Sesuaikan nama database
+   * Sesuaikan user & password
+
+Contoh:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=absensi_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+> **Catatan:**
+>
+> * Jika pakai XAMPP, default password MySQL biasanya kosong.
+> * Jika pakai Laragon, password default juga kosong kecuali diubah.
+
+---
+
+# ✅ 5. Buat Database
+
+Masuk ke **phpMyAdmin** atau tools lain:
+
+* [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
+* Buat database:
+
+```
+absensi_db
+```
+
+(tulis nama sama seperti di file `.env`)
+
+---
+
+# ✅ 6. Migrasi Database (Jika tersedia)
+
+Jika proyek menggunakan sistem migrate (Laravel misalnya):
+
+```bash
+php artisan migrate
+```
+
+Jika tidak ada command tersebut, artinya database harus dibuat manual sesuai ERD.
+
+---
+
+# ✅ 7. Jalankan Server Lokal
+
+Jika Laravel / PHP artisan:
+
+```bash
+php artisan serve
+```
+
+Jika tidak, letakkan folder pada:
+
+* **XAMPP** → `htdocs`
+* **Laragon** → `www`
+
+Lalu akses:
+
+```
+http://localhost/azril-absenkaryawan
+```
+
+---
+
+# ✅ 8. Login / Akses Aplikasi
+
+Jika aplikasi memiliki login, gunakan akun default atau buat user baru di database.
+Jika tidak ada login, aplikasi bisa langsung digunakan.
+
+---
+
+# 🎉 Aplikasi Berhasil Dijalankan!
+
+Pengguna lain sekarang dapat:
+
+* Menambahkan karyawan
+* Melakukan absen masuk / keluar
+* Melihat daftar absensi
+* Mengelola data lain sesuai fitur
+
+---
+
+# 💬 Ingin saya buatkan versi:
+
+### ✓ Format markdown lengkap untuk dimasukkan ke README?
+
+### ✓ Atau ingin saya sesuaikan langkahnya berdasarkan *framework* proyek (Laravel / Native PHP)?
+
+Cukup beri tahu saya framework apa yang digunakan dalam repo kamu, nanti saya sesuaikan secara presisi.
